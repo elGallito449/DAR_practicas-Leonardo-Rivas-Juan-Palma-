@@ -53,9 +53,9 @@ Ejecuta la clase "ClienteMain.java".
 ## 📊 Documentación Formal y Diagramas de Diseño
 
 La documentación formal se encuentra en la carpeta "docs/":
-* [Ver Especificación Formal ABNF](docs/ESPECIFICACION_ABNF.pdf)
-* [Ver Diagrama de Estados](docs/DIAGRAMA ESTADOS SERVIDOR DEFINITIVO.pdf)
-* [Ver Diagrama de Secuencia de interacciones](docs/DIAGRAMAS DE SECUENCIAS DEFINITIVO.pdf)
+* [Ver Especificación Formal ABNF](docs/ABNF.txt)
+* [Ver Diagrama de Estados](docs/DIAGRAMA%20ESTADOS%20SERVIDOR%20DEFINITIVO.pdf)
+* [Ver Diagrama de Secuencia de interacciones](docs/DIAGRAMAS%20DE%20SECUENCIAS%20DEFINITIVO.pdf)
 
 ## 🦈 Validación en Red (Captura Wireshark)
 
