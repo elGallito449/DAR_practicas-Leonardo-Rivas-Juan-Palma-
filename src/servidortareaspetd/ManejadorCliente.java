@@ -32,7 +32,7 @@ public class ManejadorCliente extends Thread {
         this.estadoActual = STATE_WAIT_LOGIN; // Estado inicial según nuestro diagrama
     }
 
-    // Método sincronizado para generar el ID (ej: "0001", "0002") sin colisiones
+    // Método sincronizado para generar el ID sin colisiones
     private synchronized String generarIdUnico() {
         String id = String.format("%04d", contadorIds);
         contadorIds++;
@@ -42,7 +42,7 @@ public class ManejadorCliente extends Thread {
     @Override
     public void run() {
         try {
-            // HERRAMIENTAS DE RED (Teoría de la asignatura)
+            // HERRAMIENTAS DE RED 
             // BufferedReader: Lee texto línea a línea hasta encontrar el \r\n
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
             // PrintWriter: Escribe texto. El "true" es el auto-flush (envía el mensaje instantáneamente)
@@ -75,7 +75,7 @@ public class ManejadorCliente extends Thread {
                                 String user = partes[1];
                                 String pass = partes[2];
                                 
-                                // Credenciales hardcodeadas (nivel estudiante)
+                                // Credenciales hardcodeadas
                                 if (user.equals("admin") && pass.equals("1234")) {
                                     out.println("AUTH_OK");
                                     estadoActual = STATE_AUTHENTICATED; // ¡Transición de estado!
@@ -126,7 +126,7 @@ public class ManejadorCliente extends Thread {
 
                             } else if (comando.equals("EXIT")) {
                                 out.println("BYE");
-                                estadoActual = STATE_CLOSING; // ¡Transición de estado!
+                                estadoActual = STATE_CLOSING; // Transición de estado
                             } else {
                                 // Comando desconocido
                                 out.println("ERROR 400 Comando_Desconocido");
