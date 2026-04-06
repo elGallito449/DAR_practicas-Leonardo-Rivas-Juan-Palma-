@@ -48,12 +48,12 @@ task-res   = "TASK_ID" SP ID SP "STATE=PENDING"
 
 ; -- Información de Estado y Resultado --
 status-res = "STAT" SP ID SP state [SP "RESULT=" result]
-state      = "PENDING" / "RUNNING" / "FINISHED" / "FAILED" ; Estados obligatorios [cite: 263]
+state      = "PENDING" / "RUNNING" / "FINISHED" / "FAILED" ; Estados obligatorios 
 result     = 1*VCHAR ; Solo presente si state es FINISHED o FAILED
 
 ; -- Gestión Estructurada de Errores --
 error-res  = "ERROR" SP err-code SP desc
-err-code   = "401" / "403" / "404" / "500" ; Códigos de error específicos [cite: 156, 157]
+err-code   = "401" / "403" / "404" / "500" ; Códigos de error específicos 
 desc       = 1*50(ALPHA / SP)
 
 ; -- Confirmación de Salida --
