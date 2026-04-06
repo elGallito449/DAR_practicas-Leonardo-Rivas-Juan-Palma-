@@ -11,7 +11,7 @@ public class ServidorMain {
 
     public static void main(String[] args) {
         
-        int puerto = 5000; // Puedes cambiarlo si el profesor te pide otro
+        int puerto = 5000; // Puerto en el que escucha el servidor
         
         System.out.println("=========================================");
         System.out.println("   SERVIDOR PETD INICIANDO...            ");
@@ -21,7 +21,7 @@ public class ServidorMain {
         GestorCola gestorCola = new GestorCola();
         gestorCola.start(); // Esto hace que el método run() del GestorCola empiece a ejecutarse en paralelo
 
-        // 2. Abrimos el ServerSocket (Modo pasivo según la teoría)
+        // 2. Abrimos el ServerSocket (Modo pasivo)
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {
             
             System.out.println("[SERVIDOR] Escuchando en el puerto " + puerto + "...");
@@ -34,7 +34,7 @@ public class ServidorMain {
                 
                 System.out.println("[SERVIDOR] ¡Nuevo cliente aceptado!");
 
-                // 4. Creamos un "camarero" exclusivo para este cliente y le damos el socket y la cola
+                // 4. Creamos un "camarero" exclusivo usando la clase ManejadorCliente para este cliente y le damos el socket y la cola
                 ManejadorCliente manejador = new ManejadorCliente(socketCliente, gestorCola);
                 
                 // 5. Arrancamos el hilo del cliente
