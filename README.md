@@ -1,4 +1,14 @@
-# Servidor Concurrente TCP (Protocolo PETD) 🚀
+## ⚠️ IMPORTANTE
+En este repositorio existen dos tipos de archivos:
+
+- 🔹 **Archivos definitivos**: contienen la versión final/correcta del proyecto --> ubicados en las carpetas "src"/"docs".
+- 🔸 **Archivos "en sucio"**: contienen pruebas, versiones intermedias o material de trabajo.
+
+👉 Para la evaluación, tener en cuenta únicamente los archivos definitivos por favor.
+
+
+
+# Servidor Concurrente TCP (Protocolo PETD)
 
 Este repositorio contiene la implementación completa de un sistema Cliente-Servidor multihilo basado en Sockets TCP, desarrollado en Java. Implementa un protocolo de aplicación propio basado en texto (sintaxis ABNF) para la gestión remota de tareas matemáticas y de texto.
 
