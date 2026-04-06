@@ -49,6 +49,5 @@ Ejecuta la clase "ClienteMain.java".
 
 ## 📊 Diagramas de Diseño
 
-*(Aquí puedes poner un enlace a los diagramas que generamos)*
-* [Ver Diagrama de Estados (FSM)](docs/diagrama_estados.png)
-* [Ver Diagrama de Secuencia de interacciones](docs/diagrama_secuencia.png)
+* [Ver Diagrama de Estados](docs/DIAGRAMA ESTADOS SERVIDOR DEFINITIVO.pdf)
+* [Ver Diagrama de Secuencia de interacciones](docs/DIAGRAMAS DE SECUENCIAS DEFINITIVO.pdf)
