@@ -1,0 +1,68 @@
+*DEFINICION ABNF / DIAGRAMAS*
+
+
+
+1. Elementos Básicos (Terminales)
+
+CRLF   = %d13.10          ; Fin de mensaje estándar (Retorno de carro + Salto de línea)
+SP     = %d32             ; Espacio en blanco único para separar campos
+DIGIT  = %x30-39          ; Dígitos numéricos (0-9)
+ALPHA  = %x41-5A / %x61-7A ; Letras mayúsculas y minúsculas
+VCHAR  = %x21-7E          ; Cualquier carácter visible (sin espacios)
+ID     = 4DIGIT           ; Identificador de tarea: exactamente 4 dígitos (0000-9999)
+
+
+
+2. Estructura de Mensajes del Cliente
+
+client-message = (login-req / push-req / poll-req / exit-req) CRLF
+
+; -- Autenticación (Campo obligatorio: Usuario y Password) --
+login-req = "LOGIN" SP username SP password
+username  = 1*15(ALPHA / DIGIT) ; Restricción: 1 a 15 caracteres alfanuméricos
+password  = 1*15VCHAR           ; Restricción: 1 a 15 caracteres sin espacios
+
+; -- Envío de Tarea (Campo obligatorio: Tipo y Parámetro) --
+push-req   = "PUSH" SP task-type SP parameter
+task-type  = "FACTORIAL" / "PRIMALIDAD" / "TEXT_UP" ; Tipos de operación soportados
+parameter  = 1*10DIGIT / 1*50ALPHA                ; Restricción: depende del tipo de tarea
+
+; -- Consulta de Estado --
+poll-req   = "POLL" SP ID
+
+; -- Cierre de Sesión --
+exit-req   = "EXIT"
+
+
+
+3. Estructura de Mensajes del Servidor
+
+server-message = (auth-res / task-res / status-res / error-res / bye-res) CRLF
+
+; -- Respuesta de Autenticación --
+auth-res   = "AUTH_OK" / ("AUTH_FAIL" SP reason)
+reason     = 1*50(ALPHA / SP / DIGIT) ; Descripción legible del fallo
+
+; -- Confirmación de Tarea (Asignación de ID único) --
+task-res   = "TASK_ID" SP ID SP "STATE=PENDING"
+
+; -- Información de Estado y Resultado --
+status-res = "STAT" SP ID SP state [SP "RESULT=" result]
+state      = "PENDING" / "RUNNING" / "FINISHED" / "FAILED" ; Estados obligatorios [cite: 263]
+result     = 1*VCHAR ; Solo presente si state es FINISHED o FAILED
+
+; -- Gestión Estructurada de Errores --
+error-res  = "ERROR" SP err-code SP desc
+err-code   = "401" / "403" / "404" / "500" ; Códigos de error específicos [cite: 156, 157]
+desc       = 1*50(ALPHA / SP)
+
+; -- Confirmación de Salida --
+bye-res    = "BYE"
+
+
+
+
+
+
+
+
