@@ -1,7 +1,7 @@
 package clientepetd;
 
-/* Codigo que  simplemente implemente una consola para hacer peticiones en crudo
-una simple terminal (consola) donde tú escribirás los comandos (LOGIN admin 1234,
+/* Codigo que  simplemente implemente una consola para hacer peticiones en crudo,
+tú escribirás los comandos (LOGIN admin 1234,
 PUSH FACTORIAL 5, POLL 0001) y verás la respuesta cruda del servidor 
 (AUTH_OK, TASK_ID...).
 */
@@ -18,8 +18,8 @@ public class ClienteMain {
 
     public static void main(String[] args) {
         
-        // Configuración de red (Apunta a la misma máquina por ahora)
-        String ipServidor = "127.0.0.1"; // Cuando uses las dos VMs, pondrás aquí la IP de la VM Servidor
+        // Configuración de red (Apunta a la maq servidor)
+        String ipServidor = "192.168.56.103"; // IP de la VM Servidor
         int puerto = 5000;
 
         System.out.println("=========================================");
