@@ -1,0 +1,210 @@
+Práctica 3. Diseño e implementación de un sistema basado en Servicios Web con Python (FastAPI)
+
+Objetivos
+
+Transformar el sistema previamente desarrollado (sockets + objetos distribuidos en Java) en un servicio web REST, utilizando Python y el framework FastAPI.
+
+El objetivo es que el estudiante comprenda:
+
+    La transición de invocación remota → API REST.
+    El uso de HTTP + JSON como estándar.
+    El diseño correcto de recursos y endpoints.
+
+
+Contexto y punto de partida
+
+Cada grupo partirá del trabajo realizado manteniéndose:
+
+    Su caso de uso original.
+    Su protocolo diseñado.
+    Su evolución a objetos distribuidos (Práctica 2).
+
+Cualquier desavenencia sobre mantener este contexto deberá ser consultando con el profesorado de la asignatura.
+
+Aunque se cambie de lenguaje (Java → Python), no se cambia el protocolo, debe seguir ofreciendo la misma lógica de comunicaciones.
+
+Se debe:
+
+    Mantener la misma lógica funcional
+    Respetar la semántica de las operaciones
+    Traducir los métodos remotos a endpoints REST
+
+
+Fase de transformación
+
+Se debe elaborar una tabla de transformación como la siguiente, que permita identificar los métodos y su transformación a endpoint con su método HTTP correspondiente, basándose en la información de la clase abstracta creada en la práctica 2:
+Método distribuido (Práctica 2) 	Endpoint REST 	Método HTTP
+crearRecurso() 	/recursos 	POST
+obtenerEstado(id) 	/recursos/{id} 	GET
+actualizarEstado(id) 	/recursos/{id} 	PUT/PATCH
+
+👉 Esta fase es obligatoria y evaluable
+
+
+Descripción y requisitos
+
+Se deberá implementar un servidor REST en Python usando FastAPI que:
+
+    Exponga una API coherente con el sistema previo
+    Permita interacción mediante HTTP
+    Devuelva datos en formato JSON
+
+Satisfaciendo los siguientes requisitos:
+1. Implementación con FastAPI
+
+Se debe:
+
+    Crear un servidor con FastAPI
+    Definir rutas (@app.get, @app.post, etc.)
+    Ejecutar el servidor con uvicorn
+
+2. Diseño de la API REST
+
+Se deben definir entre los endpoints:
+
+    Correctamente diseñados (recursos, no acciones)
+    Coherentes con el sistema original
+
+No se permite RPC disfrazado, por ejemplo:
+
+    ❌ /sendMessage
+    ✔ /messages
+
+3. Documentación de la API REST
+
+La API Rest deberá ser documentada adecuadamente siguiendo las especificaciones de Open API Specification, incluyendo toda la información documental y de versión. 
+4. Uso de HTTP correctamente
+
+Se debe:
+
+    Usar métodos HTTP adecuados
+    Devolver códigos de estado:
+        200 OK
+        201 Created
+        400 Bad Request
+        404 Not Found
+
+5. Integración con la lógica previa
+
+⚠️ Punto crítico:
+
+    La lógica del sistema debe ser equivalente a la implementada en Java.
+    No se permite simplificar el comportamiento sin consultar con el profesor.
+
+6. Cliente de prueba
+
+Se realizarán pruebas del funcionamiento de la API usando distintos cliente:
+
+    Navegador (Swagger automático de FastAPI)
+    curl
+    Bruno
+
+7. Ejecución distribuida
+
+    El servidor debe ser accesible desde otra máquina o VM
+    Se debe probar conectividad real capturando e interpretando el tráfico HTTP.
+
+
+Entregables
+
+Se deberán entregar en la tarea designada para tal caso:
+
+    Código en Python (nuevo directorio en el repositorio) y archivo ZIP.
+    Documento breve (máx. 4 páginas)
+        Transformación de métodos  → recursos REST  (Tabla de transformación )
+        Diferencias respecto a objetos distribuidos
+        Ventajas e inconvenientes de REST
+        Discusión técnica y problemas abordados:
+            stateless
+            diseño de URLs
+            gestión de estado
+    Documentación de la API REST generada por Swagger en formato PDF
+    Evidencias de ejecución con análisis de capturas del tráfico.
+
+
+
+Rúbrica de evaluación
+1. Transformación conceptual (0.5 puntos)
+
+Se evalúa:
+
+    Correspondencia correcta entre métodos y endpoints
+    Comprensión del cambio de paradigma
+
+Nivel 	Descripción
+0.50 	Transformación clara y bien justificada
+0.25 	Parcial
+0 	Incorrecta o ausente
+2. Diseño y documentación de la API REST (0.75 puntos)
+
+Se evalúa:
+
+    Uso correcto de recursos
+    Buen diseño de endpoints
+    Coherencia global
+
+Nivel 	Descripción
+0.75 	Diseño REST correcto y limpio
+0.50 	Aceptable
+0.25 	Deficiente
+0 	Incorrecto
+3. Implementación técnica en FastAPI (0.75 punto)
+
+Se evalúa:
+
+    Funcionamiento de endpoints
+    Uso correcto de FastAPI
+    Modelos bien definidos
+
+Nivel 	Descripción
+0.75 	Completo y robusto
+0.50 	Funcional
+0.25 	Parcial
+0.10 	Muy limitado
+0 	No funciona
+4. Uso de HTTP y gestión de errores (0.5 puntos)
+
+Se evalúa:
+
+    Códigos de estado
+    Validaciones
+
+Nivel 	Descripción
+0.5 	Correcto
+0 	Incorrecto
+5. Ejecución distribuida (0.25 puntos)
+
+Se evalúa:
+
+    Acceso desde otra máquina
+    Pruebas reales
+
+Nivel 	Descripción
+0.25 	Correcto
+0 	No demostrado
+6. Documentación y reflexión (0.25 puntos)
+
+Se evalúa:
+
+    Claridad
+    Comprensión conceptual
+
+Nivel 	Descripción
+0.25 	Adecuada
+0 	Insuficiente
+
+
+Generación de la documentación de la API
+
+FastAPI genera automáticamente documentación interactiva (Swagger):
+
+    http://localhost:8000/docs
+
+Para la documentación de la API generada con FastAPI, se puede entrar a una versión "leíble" de la documentación por medio del enlace:
+
+http://127.0.0.1:8000/redoc
+
+Y usando la opción de imprimir del navegador.
+
+Para ello, la API tendrá que haber sido adecuadamente documentada en el código.
+
